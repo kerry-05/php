@@ -22,22 +22,28 @@
 
  //自型設定  
  mysqli_set_charset($conn,'utf8');
-      
  echo "ksu_std_table  學生於各系人數顯示如下:". "<br/><br/>";  
  $result = mysqli_query($conn,
-                        "SELECT ksu_std_age,ksu_std_name, count(1) FROM ksu_std_table group by ksu_std_department");
+                        "SELECT ksu_std_department,ksu_std_name,ksu_std_grade,ksu_std_age FROM ksu_std_table WHERE ksu_std_department LIKE '%" . $_POST["Department"] . "%'");
+                        
  echo "<table border='1'>
  <tr>
-   <th>學生姓名</th>  <th>學生成績</th> <th>備註</th>
+   <th>系別</th>  <th>學生姓名</th> <th>年齡</th> <th>成績</th> <th>備註</th>
  </tr>";
 
  //使用 mysqli_fetch_array() 取回資料庫資料
  while($row = mysqli_fetch_array($result))
  {
    echo "<tr>";
-   echo "<td>" . $row['ksu_std_name'] . "</td>";
+   echo "<td>" . $row['ksu_std_department'] . "</td>";
+   echo "<td>" . $row['ksu_std_name'] .   "</td>";
    echo "<td>" . $row['ksu_std_age'] .   "</td>";
-   echo "<td>" . $row['count(1)'] .   "</td>";
+   echo "<td>" . $row['ksu_std_grade'] .   "</td>";
+   if ($row['ksu_std_grade'] >= 60){
+      echo "<td></td>";
+   }else{
+      echo '<td style="background-color:yellow;">補考</td>';
+   }
    echo "</tr>";
  }
  echo "</table>";

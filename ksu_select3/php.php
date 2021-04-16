@@ -1,4 +1,3 @@
-```
 <?php
  $db_host = "localhost";
  $db_name = "ksu_database";
@@ -46,4 +45,3 @@
 <form enctype="multipart/form-data"  method="post" action="ksu_select3.html">
 <input type="submit" name="sub" value="返回"/>
 </form>
-```

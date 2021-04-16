@@ -21,7 +21,7 @@
  mysqli_set_charset($conn,'utf8');
  echo "ksu_std_table  學生於各系人數顯示如下:". "<br/><br/>";  
  $result = mysqli_query($conn,
-                        "SELECT ksu_std_department,ksu_std_name,ksu_std_grade,ksu_std_age FROM ksu_std_table WHERE ksu_std_department LIKE '%" . $_POST["Department"] . "%'");
+                        "SELECT ksu_std_department,ksu_std_name,ksu_std_grade,ksu_std_age FROM ksu_std_table  WHERE ksu_std_department LIKE '%" . $_POST["Department"] . "%' ORDER BY ksu_std_grade ASC");
                         
  echo "<table border='1'>
  <tr>
